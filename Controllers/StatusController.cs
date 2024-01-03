@@ -13,6 +13,15 @@ public class StatusController : Controller
 
         return new OkObjectResult(responseMessage);
     }
+    
+    public async Task<IActionResult> Internal()
+    {
+        var client = new HttpClient();
+        var response = await client.GetAsync(@"https://webapp-halvard-2.azurewebsites.net/status");
+        var responseMessage = await response.Content.ReadAsStringAsync();
+
+        return new OkObjectResult(responseMessage);
+    }
 }
     
 
